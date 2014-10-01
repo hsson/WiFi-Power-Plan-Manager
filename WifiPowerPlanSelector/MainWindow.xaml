@@ -1,0 +1,21 @@
+﻿<Window x:Name="Window" x:Class="WifiPowerPlanSelector.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WiFi Power Plan Manager" Height="350" Width="525" ResizeMode="CanMinimize" WindowStyle="None" MouseDown="Window_MouseDown" BorderBrush="Black" Background="White" BorderThickness="1">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,22,0,0" TextWrapping="Wrap" Text="WiFi Power Plan Manager" VerticalAlignment="Top" FontSize="24"/>
+        <ListView Height="226" Margin="10,0,10,10" VerticalAlignment="Bottom">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+            <ListBoxItem Content="Crash14"/>
+        </ListView>
+        <Label Content="Saved power plan rules:" HorizontalAlignment="Left" Margin="10,83,0,0" VerticalAlignment="Top"/>
+        <Button Content="Add new" HorizontalAlignment="Right" Margin="0,69,10,0" VerticalAlignment="Top" Width="134" Height="37"/>
+        <WrapPanel HorizontalAlignment="Left" Height="100" Margin="281,69,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="X" HorizontalAlignment="Left" Margin="478,10,0,0" VerticalAlignment="Top" Width="35" Background="{x:Null}" BorderBrush="{x:Null}" Height="34" Click="Button_Click" FontSize="14"/>
+
+    </Grid>
+</Window>
