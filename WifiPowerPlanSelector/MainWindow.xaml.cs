@@ -23,6 +23,9 @@ namespace WifiPowerPlanSelector
         public MainWindow()
         {
             InitializeComponent();
+            List<WiFiRule> rules = new List<WiFiRule>();
+            rules.Add(new WiFiRule { enabled = "On", ssid = "Crash14", powerplan = "Balanced" });
+            rulesList.ItemsSource = rules;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

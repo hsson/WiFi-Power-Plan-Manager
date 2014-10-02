@@ -4,18 +4,19 @@
         Title="WiFi Power Plan Manager" Height="350" Width="525" ResizeMode="CanMinimize" WindowStyle="None" MouseDown="Window_MouseDown" BorderBrush="Black" Background="White" BorderThickness="1">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="10,22,0,0" TextWrapping="Wrap" Text="WiFi Power Plan Manager" VerticalAlignment="Top" FontSize="24"/>
-        <ListView Height="226" Margin="10,0,10,10" VerticalAlignment="Bottom">
+        <ListView x:Name="rulesList" Height="226" Margin="10,0,10,10" VerticalAlignment="Bottom">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Header="Enabled" DisplayMemberBinding="{Binding enabled}"/>
+                    <GridViewColumn Header="WiFi SSID (Name)" Width="200" DisplayMemberBinding="{Binding ssid}"/>
+                    <GridViewColumn Header="Power Plan" Width="150" DisplayMemberBinding="{Binding powerplan}"/>
                 </GridView>
             </ListView.View>
-            <ListBoxItem Content="Crash14"/>
         </ListView>
         <Label Content="Saved power plan rules:" HorizontalAlignment="Left" Margin="10,83,0,0" VerticalAlignment="Top"/>
         <Button Content="Add new" HorizontalAlignment="Right" Margin="0,69,10,0" VerticalAlignment="Top" Width="134" Height="37"/>
-        <WrapPanel HorizontalAlignment="Left" Height="100" Margin="281,69,0,0" VerticalAlignment="Top" Width="100"/>
         <Button Content="X" HorizontalAlignment="Left" Margin="478,10,0,0" VerticalAlignment="Top" Width="35" Background="{x:Null}" BorderBrush="{x:Null}" Height="34" Click="Button_Click" FontSize="14"/>
+        <Label Content="by Alexander Håkansson" HorizontalAlignment="Left" Margin="141,47,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
