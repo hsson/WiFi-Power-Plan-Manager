@@ -6,23 +6,50 @@ using System.Threading.Tasks;
 
 namespace WifiPowerPlanSelector
 {
-    class WiFiRule
+    class WiFiRule        
     {
-        public string enabled
+        private string ssid, powerPlan;
+        private Boolean enabled;
+
+        public Boolean Enabled
         {
-            get;
-            set;
+            get 
+            {
+                return enabled;
+            }
+            set
+            {
+                enabled = value;
+            }
+        }
+        public string SSID
+        {
+            get
+            {
+                return ssid;
+            }
+            set
+            {
+                ssid = value;
+            }
+        }
+        public string PowerPlan
+        {
+            get
+            {
+                return powerPlan;
+            }
+            set
+            {
+                powerPlan = value;
+            }
         }
 
-        public string ssid
+        public WiFiRule(Boolean enabled, string ssid, string powerPlan)
         {
-            get;
-            set;
-        }
-        public string powerplan
-        {
-            get;
-            set;
+            this.enabled = enabled;
+            this.ssid = ssid;
+            this.powerPlan = powerPlan;
         }
     }
 }

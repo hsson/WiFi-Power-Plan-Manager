@@ -19,12 +19,17 @@ namespace WifiPowerPlanSelector
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {        
         public MainWindow()
         {
             InitializeComponent();
             List<WiFiRule> rules = new List<WiFiRule>();
-            rules.Add(new WiFiRule { enabled = "On", ssid = "Crash14", powerplan = "Balanced" });
+
+            //Dummy data
+            WiFiRule dummyRule = new WiFiRule(true, "Some-WiFi", "Balanced");
+            rules.Add(dummyRule);
+            //End dummy data
+
             rulesList.ItemsSource = rules;
         }
 
@@ -34,9 +39,20 @@ namespace WifiPowerPlanSelector
                 this.DragMove();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Make sure to save state.
             Close();
+        }
+
+        private void ruleEnabledCheckBoxChanged(object sender, RoutedEventArgs e)
+        {
+            //Un-enable wifi rule
         }
     }
 }

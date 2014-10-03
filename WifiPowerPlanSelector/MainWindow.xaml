@@ -5,18 +5,30 @@
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="10,22,0,0" TextWrapping="Wrap" Text="WiFi Power Plan Manager" VerticalAlignment="Top" FontSize="24"/>
         <ListView x:Name="rulesList" Height="226" Margin="10,0,10,10" VerticalAlignment="Bottom">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Edit..." />
+                    <MenuItem Header="Delete" />
+                </ContextMenu>
+            </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Enabled" DisplayMemberBinding="{Binding enabled}"/>
-                    <GridViewColumn Header="WiFi SSID (Name)" Width="200" DisplayMemberBinding="{Binding ssid}"/>
-                    <GridViewColumn Header="Power Plan" Width="150" DisplayMemberBinding="{Binding powerplan}"/>
+                    <GridViewColumn Header="Enabled">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Name="ruleEnabledCheckBox" IsChecked="{Binding Enabled}" Unchecked="ruleEnabledCheckBoxChanged" Checked="ruleEnabledCheckBoxChanged"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="WiFi SSID (Name)" Width="200" DisplayMemberBinding="{Binding SSID}"/>
+                    <GridViewColumn Header="Power Plan" Width="150" DisplayMemberBinding="{Binding PowerPlan}"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <Label Content="Saved power plan rules:" HorizontalAlignment="Left" Margin="10,83,0,0" VerticalAlignment="Top"/>
         <Button Content="Add new" HorizontalAlignment="Right" Margin="0,69,10,0" VerticalAlignment="Top" Width="134" Height="37"/>
-        <Button Content="X" HorizontalAlignment="Left" Margin="478,10,0,0" VerticalAlignment="Top" Width="35" Background="{x:Null}" BorderBrush="{x:Null}" Height="34" Click="Button_Click" FontSize="14"/>
+        <Button x:Name="CloseButton" Content="r" HorizontalAlignment="Right" VerticalAlignment="Top" Width="35" Background="{x:Null}" BorderBrush="{x:Null}" Height="30" FontSize="16" ToolTip="Close" FontFamily="Webdings" Foreground="Gray" Click="CloseButton_Click" BorderThickness="0"/>
         <Label Content="by Alexander Håkansson" HorizontalAlignment="Left" Margin="141,47,0,0" VerticalAlignment="Top"/>
-
+        <Button x:Name="MinimizeButton" Content="0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="35" Background="{x:Null}" BorderBrush="{x:Null}" Height="30" FontSize="16" ToolTip="Minimize" FontFamily="Webdings" Foreground="Gray" Margin="0,0,35,0" Click="MinimizeButton_Click" BorderThickness="0"/>
     </Grid>
 </Window>
