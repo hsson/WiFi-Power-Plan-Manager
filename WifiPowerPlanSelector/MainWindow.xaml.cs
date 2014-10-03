@@ -54,5 +54,17 @@ namespace WifiPowerPlanSelector
         {
             //Un-enable wifi rule
         }
+
+        private void EditRuleMenu_Click(object sender, RoutedEventArgs e)
+        {
+            WiFiRule item = this.rulesList.SelectedItem as WiFiRule;
+            MessageBox.Show("EDIT: " + item.SSID);
+        }
+
+        private void DeleteRuleMenu_Click(object sender, RoutedEventArgs e)
+        {
+            WiFiRule item = this.rulesList.SelectedItem as WiFiRule;
+            MessageBox.Show("DELETE: " + item.SSID);
+        }
     }
 }

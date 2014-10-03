@@ -7,12 +7,12 @@
         <ListView x:Name="rulesList" Height="226" Margin="10,0,10,10" VerticalAlignment="Bottom">
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Edit..." />
-                    <MenuItem Header="Delete" />
+                    <MenuItem Header="Edit..." Click="EditRuleMenu_Click" />
+                    <MenuItem Header="Delete" Click="DeleteRuleMenu_Click" />
                 </ContextMenu>
             </ListView.ContextMenu>
             <ListView.View>
-                <GridView>
+                <GridView>                    
                     <GridViewColumn Header="Enabled">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

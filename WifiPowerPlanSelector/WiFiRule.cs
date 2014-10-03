@@ -10,6 +10,8 @@ namespace WifiPowerPlanSelector
     {
         private string ssid, powerPlan;
         private Boolean enabled;
+        private static int nbrOfInstances;
+        private int id;
 
         public Boolean Enabled
         {
@@ -44,12 +46,28 @@ namespace WifiPowerPlanSelector
                 powerPlan = value;
             }
         }
+        public int NumberOfInstances
+        {
+            get
+            {
+                return nbrOfInstances;
+            }
+        }
+        public int ID
+        {
+            get 
+            {
+                return id;
+            }
+        }
 
         public WiFiRule(Boolean enabled, string ssid, string powerPlan)
         {
             this.enabled = enabled;
             this.ssid = ssid;
             this.powerPlan = powerPlan;
+            nbrOfInstances++;
+            id = nbrOfInstances;
         }
     }
 }
