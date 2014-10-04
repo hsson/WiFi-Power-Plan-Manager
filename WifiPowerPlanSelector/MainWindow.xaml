@@ -16,7 +16,7 @@
                     <GridViewColumn Header="Enabled">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox Name="ruleEnabledCheckBox" IsChecked="{Binding Enabled}" Unchecked="ruleEnabledCheckBoxChanged" Checked="ruleEnabledCheckBoxChanged"/>
+                                <CheckBox Name="ruleEnabledCheckBox" IsChecked="{Binding Enabled}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

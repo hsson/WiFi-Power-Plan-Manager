@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WifiPowerPlanSelector
 {
     class WiFiRule        
     {
         private string ssid, powerPlan;
-        private Boolean enabled;
+        private Boolean enabled, deleted;
         private static int nbrOfInstances;
         private int id;
 
@@ -21,7 +22,25 @@ namespace WifiPowerPlanSelector
             }
             set
             {
-                enabled = value;
+                if (!value)
+                {                
+                    MessageBoxResult rsltMessageBox = MessageBox.Show("Are you sure you want to disable this rule?",
+                        "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                    switch (rsltMessageBox)
+                    {
+                        case MessageBoxResult.Yes:
+                            enabled = value;
+                            break;
+
+                        case MessageBoxResult.No:
+                            break;
+                    }
+                }
+                else
+                {
+                    enabled = value;
+                }
             }
         }
         public string SSID
@@ -63,11 +82,17 @@ namespace WifiPowerPlanSelector
 
         public WiFiRule(Boolean enabled, string ssid, string powerPlan)
         {
+            this.deleted = false;
             this.enabled = enabled;
             this.ssid = ssid;
             this.powerPlan = powerPlan;
             nbrOfInstances++;
             id = nbrOfInstances;
+        }
+
+        public void Dispose()
+        {
+            this.deleted = true;
         }
     }
 }
