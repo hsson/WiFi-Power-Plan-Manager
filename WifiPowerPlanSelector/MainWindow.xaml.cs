@@ -52,7 +52,7 @@ namespace WifiPowerPlanSelector
         private void EditRuleMenu_Click(object sender, RoutedEventArgs e)
         {
             WiFiRule item = this.rulesList.SelectedItem as WiFiRule;
-
+            
             //Dummy action
             MessageBox.Show("EDIT: " + item.SSID);
         }
@@ -73,6 +73,16 @@ namespace WifiPowerPlanSelector
 
                 case MessageBoxResult.No:
                     break;
+            }
+        }
+
+        private void AddNewRuleButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewRule newRuleWindow = new AddNewRule();
+
+            if (newRuleWindow.ShowDialog() == true)
+            {
+                MessageBox.Show("New rule added :)");
             }
         }
     }

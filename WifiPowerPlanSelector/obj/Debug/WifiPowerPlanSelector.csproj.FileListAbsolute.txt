@@ -11,3 +11,5 @@ C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanS
 C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanSelector\WifiPowerPlanSelector\obj\Debug\WifiPowerPlanSelector.csproj.GenerateResource.Cache
 C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanSelector\WifiPowerPlanSelector\obj\Debug\WifiPowerPlanSelector.exe
 C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanSelector\WifiPowerPlanSelector\obj\Debug\WifiPowerPlanSelector.pdb
+C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanSelector\WifiPowerPlanSelector\obj\Debug\AddNewRule.baml
+C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanSelector\WifiPowerPlanSelector\obj\Debug\AddNewRule.g.cs

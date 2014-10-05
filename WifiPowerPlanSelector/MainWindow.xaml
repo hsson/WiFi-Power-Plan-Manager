@@ -26,8 +26,28 @@
             </ListView.View>
         </ListView>
         <Label Content="Saved power plan rules:" HorizontalAlignment="Left" Margin="10,83,0,0" VerticalAlignment="Top"/>
-        <Button Content="Add new" HorizontalAlignment="Right" Margin="0,69,10,0" VerticalAlignment="Top" Width="134" Height="37"/>
-        <Button x:Name="CloseButton" Content="r" HorizontalAlignment="Right" VerticalAlignment="Top" Width="35" Background="{x:Null}" BorderBrush="{x:Null}" Height="30" FontSize="16" ToolTip="Close" FontFamily="Webdings" Foreground="Gray" Click="CloseButton_Click" BorderThickness="0"/>
+        <Button x:Name="AddNewRuleButton" Content="Add new" HorizontalAlignment="Right" Margin="0,69,10,0" VerticalAlignment="Top" Width="134" Height="37" Click="AddNewRuleButton_Click"/>
+        <Button x:Name="CloseButton" Content="r" HorizontalAlignment="Right" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Height="30" FontSize="16" ToolTip="Close" FontFamily="Webdings" Foreground="Gray" Click="CloseButton_Click" BorderThickness="0">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="{x:Null}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFFF5454"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <Label Content="by Alexander Håkansson" HorizontalAlignment="Left" Margin="141,47,0,0" VerticalAlignment="Top"/>
         <Button x:Name="MinimizeButton" Content="0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="35" Background="{x:Null}" BorderBrush="{x:Null}" Height="30" FontSize="16" ToolTip="Minimize" FontFamily="Webdings" Foreground="Gray" Margin="0,0,35,0" Click="MinimizeButton_Click" BorderThickness="0"/>
     </Grid>
