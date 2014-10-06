@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WifiPowerPlanSelector.AddNewRule"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Add new WiFi Rule" Height="260" Width="280" ResizeMode="CanMinimize" WindowStyle="None" MouseDown="Window_MouseDown" BorderBrush="Black" Background="White" BorderThickness="1">
+        Title="Add new WiFi Rule" Height="260" Width="280" ResizeMode="CanMinimize" WindowStyle="None" MouseDown="Window_MouseDown" BorderBrush="Black" Background="White" BorderThickness="1" WindowStartupLocation="CenterOwner" AllowsTransparency="True">
     <Grid>
         <Button x:Name="CloseButton" Content="r" HorizontalAlignment="Right" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Height="30" FontSize="16" ToolTip="Close" FontFamily="Webdings" Foreground="Gray" Click="CloseButton_Click" BorderThickness="0">
             <Button.Style>
@@ -31,4 +31,13 @@
         <Label Content="Select power plan:" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top"/>
         <Button x:Name="SaveRuleButton" Content="Save new rule" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Width="106" Height="38" Click="SaveRuleButton_Click"/>
     </Grid>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard >
+                    <DoubleAnimation Duration="0:0:.2" Storyboard.TargetProperty="Opacity" From="0" To="1" AccelerationRatio=".1"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
 </Window>

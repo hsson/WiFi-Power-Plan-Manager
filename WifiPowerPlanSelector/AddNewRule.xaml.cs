@@ -15,7 +15,8 @@ using System.Windows.Shapes;
 namespace WifiPowerPlanSelector
 {
     public partial class AddNewRule : Window
-    {
+    {   
+
         public AddNewRule()
         {
             InitializeComponent();
@@ -35,6 +36,12 @@ namespace WifiPowerPlanSelector
         {
             //TODO: Make sure everything is filled in.
             DialogResult = true;
+        }
+
+        public bool? ShowDialog(Window owner)
+        {
+            this.Owner = owner;
+            return this.ShowDialog();
         }
     }
 }

@@ -80,9 +80,9 @@ namespace WifiPowerPlanSelector
         {
             AddNewRule newRuleWindow = new AddNewRule();
 
-            if (newRuleWindow.ShowDialog() == true)
+            if (newRuleWindow.ShowDialog(Application.Current.MainWindow) == true)
             {
-                MessageBox.Show("New rule added :)");
+                MessageBox.Show("TODO: Add rule)");
             }
         }
     }
