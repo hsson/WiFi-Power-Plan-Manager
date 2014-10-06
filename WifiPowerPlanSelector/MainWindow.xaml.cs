@@ -54,7 +54,7 @@ namespace WifiPowerPlanSelector
             WiFiRule item = this.rulesList.SelectedItem as WiFiRule;
             
             //Dummy action
-            MessageBox.Show("EDIT: " + item.SSID);
+            MessageBox.Show("TODO: Edit: " + item.SSID);
         }
 
         private void DeleteRuleMenu_Click(object sender, RoutedEventArgs e)
