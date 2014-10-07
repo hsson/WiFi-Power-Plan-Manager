@@ -56,7 +56,10 @@
     <Compile Include="AddNewRule.xaml.cs">
       <DependentUpon>AddNewRule.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interop.cs" />
+    <Compile Include="WiFi.cs" />
     <Compile Include="WiFiRule.cs" />
+    <Compile Include="WlanApi.cs" />
     <Page Include="AddNewRule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
