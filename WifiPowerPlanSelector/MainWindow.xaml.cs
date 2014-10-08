@@ -25,7 +25,7 @@ namespace WifiPowerPlanSelector
             InitializeComponent();            
 
             //Dummy data
-            WiFiRule dummyRule = new WiFiRule(true, "Some-WiFi", "Balanced");
+            WiFiRule dummyRule = new WiFiRule(true, "Dummy-WiFi", "Balanced");
             rulesCollection.Add(dummyRule);
             //End dummy data
 
@@ -82,7 +82,9 @@ namespace WifiPowerPlanSelector
 
             if (newRuleWindow.ShowDialog(Application.Current.MainWindow) == true)
             {
-                MessageBox.Show("TODO: Add rule)");
+                WiFiRule newRule = new WiFiRule(true, newRuleWindow.SelectedWiFi.SSID, newRuleWindow.SelectedPowerPlan);
+                rulesCollection.Add(newRule);
+                //MessageBox.Show("TODO: Add rule");
             }
         }
     }

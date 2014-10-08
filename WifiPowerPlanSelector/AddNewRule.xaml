@@ -29,7 +29,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,22,0,0" TextWrapping="Wrap" Text="Add new WiFi rule" VerticalAlignment="Top" FontSize="24"/>
         <ComboBox x:Name="wifiComboBox" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top" Width="258" DisplayMemberPath="SSID" SelectedValuePath="SSID" SelectedValue="{Binding Path=WiFi}"/>
         <Label Content="Select WiFi:" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="10,159,0,0" VerticalAlignment="Top" Width="258"/>
+        <ComboBox x:Name="powerPlanComboBox" HorizontalAlignment="Left" Margin="10,159,0,0" VerticalAlignment="Top" Width="258" />
         <Label Content="Select power plan:" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top"/>
         <Button x:Name="SaveRuleButton" Content="Save new rule" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Width="106" Height="38" Click="SaveRuleButton_Click"/>
     </Grid>

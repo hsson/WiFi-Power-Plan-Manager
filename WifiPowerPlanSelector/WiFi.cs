@@ -7,7 +7,7 @@ using NativeWifi;
 
 namespace WifiPowerPlanSelector
 {
-    class WiFi
+    public class WiFi
     {
         private string ssid = "";
         private static List<WiFi> wifis = new List<WiFi>();
