@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Add new WiFi Rule" Height="260" Width="280" ResizeMode="CanMinimize" WindowStyle="None" MouseDown="Window_MouseDown" BorderBrush="Black" Background="White" BorderThickness="1" WindowStartupLocation="CenterOwner" AllowsTransparency="True">
     <Grid>
-        <Button x:Name="CloseButton" Content="r" HorizontalAlignment="Right" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Height="30" FontSize="16" ToolTip="Close" FontFamily="Webdings" Foreground="Gray" Click="CloseButton_Click" BorderThickness="0">
+        <Button x:Name="CloseButton" Content="r" HorizontalAlignment="Right" VerticalAlignment="Top" Width="35" BorderBrush="{x:Null}" Height="30" FontSize="16" ToolTip="Close" FontFamily="Webdings" Click="CloseButton_Click" BorderThickness="0">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="{x:Null}"/>

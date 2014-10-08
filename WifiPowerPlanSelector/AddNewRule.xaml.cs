@@ -73,10 +73,17 @@ namespace WifiPowerPlanSelector
 
         private void SaveRuleButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Make sure everything is filled in.
-            SelectedWiFi = (WiFi)wifiComboBox.SelectedItem;
-            SelectedPowerPlan = (String)powerPlanComboBox.SelectedItem;
-            DialogResult = true;
+            if (wifiComboBox.SelectedIndex > -1 || powerPlanComboBox.SelectedIndex > -1)
+            {
+                SelectedWiFi = (WiFi)wifiComboBox.SelectedItem;
+                SelectedPowerPlan = (String)powerPlanComboBox.SelectedItem;
+                DialogResult = true;
+            }
+            else
+            {
+                MessageBox.Show("Nothing selected!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
 
         public bool? ShowDialog(Window owner)
