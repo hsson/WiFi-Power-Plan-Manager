@@ -82,7 +82,7 @@ namespace WifiPowerPlanSelector
 
             if (newRuleWindow.ShowDialog(Application.Current.MainWindow) == true)
             {
-                WiFiRule newRule = new WiFiRule(true, newRuleWindow.SelectedWiFi.SSID, newRuleWindow.SelectedPowerPlan);
+                WiFiRule newRule = new WiFiRule(true, newRuleWindow.SelectedWiFi.SSID, newRuleWindow.SelectedPowerPlan.Name);
                 rulesCollection.Add(newRule);
                 //MessageBox.Show("TODO: Add rule");
             }

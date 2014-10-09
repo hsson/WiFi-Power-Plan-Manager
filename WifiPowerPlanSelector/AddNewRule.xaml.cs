@@ -19,10 +19,10 @@ namespace WifiPowerPlanSelector
     public partial class AddNewRule : Window
     {
         private List<WiFi> wifis;
-        private List<String> powerPlans;
+        private List<PowerPlan> powerPlans;
 
         private WiFi chosenWiFi;
-        private String selctedPowerplan;
+        private PowerPlan selctedPowerplan;
 
         public WiFi SelectedWiFi
         {
@@ -36,7 +36,7 @@ namespace WifiPowerPlanSelector
             }
         }
 
-        public String SelectedPowerPlan
+        public PowerPlan SelectedPowerPlan
         {
             get
             {
@@ -53,9 +53,9 @@ namespace WifiPowerPlanSelector
             InitializeComponent();
             WiFi.refreshAllWiFi();
             wifis = WiFi.getAllWiFis();
-            powerPlans = new List<string>();
-            powerPlans.Add("Dummy plan");
-            powerPlans.Add("Dumber dummy plan");
+            powerPlans = new List<PowerPlan>();
+            powerPlans.Add(new PowerPlan("Dummy Rule"));
+            powerPlans.Add(new PowerPlan("Dumber Dummy Rule"));
 
             wifiComboBox.ItemsSource = wifis;
             powerPlanComboBox.ItemsSource = powerPlans;
@@ -76,7 +76,7 @@ namespace WifiPowerPlanSelector
             if (wifiComboBox.SelectedIndex > -1 || powerPlanComboBox.SelectedIndex > -1)
             {
                 SelectedWiFi = (WiFi)wifiComboBox.SelectedItem;
-                SelectedPowerPlan = (String)powerPlanComboBox.SelectedItem;
+                SelectedPowerPlan = (PowerPlan)powerPlanComboBox.SelectedItem;
                 DialogResult = true;
             }
             else
