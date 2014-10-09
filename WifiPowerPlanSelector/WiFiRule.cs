@@ -9,10 +9,10 @@ namespace WifiPowerPlanSelector
 {
     class WiFiRule        
     {
-        private string ssid, powerPlan;
+        private WiFi wifi;
+        private PowerPlan powerPlan;
         private Boolean enabled, deleted;
         private static int nbrOfInstances;
-        private int id;
 
         public Boolean Enabled
         {
@@ -43,26 +43,26 @@ namespace WifiPowerPlanSelector
                 }
             }
         }
-        public string SSID
+        public WiFi WiFi
         {
             get
             {
-                return ssid;
+                return this.wifi;
             }
             set
             {
-                ssid = value;
+                this.wifi = value;
             }
         }
-        public string PowerPlan
+        public PowerPlan PowerPlan
         {
             get
             {
-                return powerPlan;
+                return this.powerPlan;
             }
             set
             {
-                powerPlan = value;
+                this.powerPlan = value;
             }
         }
         public int NumberOfInstances
@@ -72,22 +72,14 @@ namespace WifiPowerPlanSelector
                 return nbrOfInstances;
             }
         }
-        public int ID
-        {
-            get 
-            {
-                return id;
-            }
-        }
 
-        public WiFiRule(Boolean enabled, string ssid, string powerPlan)
+        public WiFiRule(Boolean enabled, WiFi wifi, PowerPlan powerPlan)
         {
             this.deleted = false;
             this.enabled = enabled;
-            this.ssid = ssid;
+            this.wifi = wifi;
             this.powerPlan = powerPlan;
             nbrOfInstances++;
-            id = nbrOfInstances;
         }
 
         public void Dispose()

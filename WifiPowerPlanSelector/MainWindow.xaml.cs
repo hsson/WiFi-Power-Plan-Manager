@@ -22,12 +22,7 @@ namespace WifiPowerPlanSelector
 
         public MainWindow()
         {
-            InitializeComponent();            
-
-            //Dummy data
-            WiFiRule dummyRule = new WiFiRule(true, "Dummy-WiFi", "Balanced");
-            rulesCollection.Add(dummyRule);
-            //End dummy data
+            InitializeComponent();
 
             rulesList.ItemsSource = rulesCollection;
         }
@@ -54,7 +49,7 @@ namespace WifiPowerPlanSelector
             WiFiRule item = this.rulesList.SelectedItem as WiFiRule;
             
             //Dummy action
-            MessageBox.Show("TODO: Edit: " + item.SSID);
+            MessageBox.Show("TODO: Edit: " + item.WiFi.SSID);
         }
 
         private void DeleteRuleMenu_Click(object sender, RoutedEventArgs e)
@@ -82,9 +77,8 @@ namespace WifiPowerPlanSelector
 
             if (newRuleWindow.ShowDialog(Application.Current.MainWindow) == true)
             {
-                WiFiRule newRule = new WiFiRule(true, newRuleWindow.SelectedWiFi.SSID, newRuleWindow.SelectedPowerPlan.Name);
+                WiFiRule newRule = new WiFiRule(true, newRuleWindow.SelectedWiFi, newRuleWindow.SelectedPowerPlan);
                 rulesCollection.Add(newRule);
-                //MessageBox.Show("TODO: Add rule");
             }
         }
     }

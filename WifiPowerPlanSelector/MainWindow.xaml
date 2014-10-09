@@ -20,8 +20,8 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="WiFi SSID (Name)" Width="200" DisplayMemberBinding="{Binding SSID}"/>
-                    <GridViewColumn Header="Power Plan" Width="150" DisplayMemberBinding="{Binding PowerPlan}"/>
+                    <GridViewColumn Header="WiFi SSID (Name)" Width="200" DisplayMemberBinding="{Binding WiFi.SSID}"/>
+                    <GridViewColumn Header="Power Plan" Width="150" DisplayMemberBinding="{Binding PowerPlan.Name}"/>
                 </GridView>
             </ListView.View>
         </ListView>
