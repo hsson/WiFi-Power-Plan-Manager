@@ -236,7 +236,7 @@ namespace NativeWifi
                             Wlan.WlanFreeMemory(valuePtr);
                         }
                     }
-                    catch (Win32Exception w32e)
+                    catch (Win32Exception)
                     {
                         return new Wlan.WlanConnectionAttributes();
                     }

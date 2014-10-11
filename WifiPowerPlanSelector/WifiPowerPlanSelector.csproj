@@ -62,9 +62,13 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>WifiPowerPlanSelector.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -79,15 +83,16 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </ApplicationDefinition>
+    </Page>
     <Compile Include="AddNewRule.xaml.cs">
       <DependentUpon>AddNewRule.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interop.cs" />
     <Compile Include="PowerPlan.cs" />
+    <Compile Include="SingleInstance.cs" />
     <Compile Include="WiFi.cs" />
     <Compile Include="WiFiRule.cs" />
     <Compile Include="WlanApi.cs" />
