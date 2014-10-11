@@ -10,7 +10,35 @@ namespace WifiPowerPlanSelector
 {
     public class PowerPlan
     {
+        private String name, guid;
 
+        #region Properties (get,set)
+        public String Name
+        {
+            get
+            {
+                return this.name;
+            }
+            set
+            {
+                this.name = value;
+            }
+        }
+        public String GUID
+        {
+            get
+            {
+                return this.guid;
+            }
+            set
+            {
+                this.guid = value;
+            }
+        }
+        #endregion
+
+        #region DLL Import
+        // P/Invoke
         [DllImport("PowrProf.dll")]
         public static extern UInt32 PowerEnumerate(IntPtr RootPowerKey, IntPtr SchemeGuid, IntPtr SubGroupOfPowerSettingGuid, UInt32 AcessFlags, UInt32 Index, ref Guid Buffer, ref UInt32 BufferSize);
 
@@ -57,36 +85,29 @@ namespace WifiPowerPlanSelector
                 schemeIndex++;
             }
         }
+        #endregion
 
-
-        // DUMMY CODE
-        public static void test()
+        public PowerPlan(String name, String guid)
         {
+
+            this.name = name;
+            this.guid = guid;
+        }
+
+        public static List<PowerPlan> GetAllPowerPlans()
+        {
+            List<PowerPlan> powerPlanList = new List<PowerPlan>();
             var powerPlans = GetAll();
 
             foreach (Guid guidPlan in powerPlans)
             {
-                MessageBox.Show(ReadFriendlyName(guidPlan));
-            }
-        }
+                String planName = ReadFriendlyName(guidPlan);
+                String planGUID = guidPlan.ToString();
 
-        private String name;
-
-        public String Name
-        {
-            get
-            {
-                return this.name;
+                powerPlanList.Add(new PowerPlan(planName, planGUID));
             }
-            set
-            {
-                this.name = value;
-            }
-        }
 
-        public PowerPlan(String name)
-        {
-            this.name = name;
+            return powerPlanList;
         }
     }
 }
