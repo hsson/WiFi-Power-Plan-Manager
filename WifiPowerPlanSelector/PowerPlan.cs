@@ -72,7 +72,7 @@ namespace WifiPowerPlanSelector
             return friendlyName;
         }
 
-        public static IEnumerable<Guid> GetAll()
+        private static IEnumerable<Guid> GetAll()
         {
             var schemeGuid = Guid.Empty;
 
@@ -98,6 +98,8 @@ namespace WifiPowerPlanSelector
         {
             List<PowerPlan> powerPlanList = new List<PowerPlan>();
             var powerPlans = GetAll();
+
+            IntPtr pActivePlan = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(Guid)));
 
             foreach (Guid guidPlan in powerPlans)
             {

@@ -42,6 +42,26 @@ namespace WifiPowerPlanSelector
             }
         }
 
+        public static String connectedWiFi()
+        {
+            WlanClient client = new WlanClient();
+
+            try
+            {
+                foreach (WlanClient.WlanInterface wlanIface in client.Interfaces)
+                {
+                    Wlan.WlanConnectionAttributes currentConnection = wlanIface.CurrentConnection;
+                    return currentConnection.profileName;
+                }
+            }
+            finally
+            {
+
+            }
+
+            return "";
+        }
+
         public static List<WiFi> getAllWiFis()
         {
             return wifis;

@@ -13,18 +13,50 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace WifiPowerPlanSelector
 {
     public partial class MainWindow : Window
     {
-        ObservableCollection<WiFiRule> rulesCollection = new ObservableCollection<WiFiRule>();
+        private ObservableCollection<WiFiRule> rulesCollection = new ObservableCollection<WiFiRule>();
+        private String[] args;
+        private String lastKnownWiFi, currentWiFi;
+        
 
         public MainWindow()
         {
             InitializeComponent();
 
+            lastKnownWiFi = WiFi.connectedWiFi();
+            currentWiFi = lastKnownWiFi;
+
+            System.Windows.Threading.DispatcherTimer wifiTimer = new System.Windows.Threading.DispatcherTimer();
+            wifiTimer.Tick += new EventHandler(wifiTimer_Tick);
+            wifiTimer.Interval = new TimeSpan(0, 0, 10);
+            wifiTimer.Start();
+
+            args = Environment.GetCommandLineArgs();
+
+            // If --minimized is used the program will not show. Use this when starting
+            // the program at windows boot.
+            if (args.Length > 1 && args[1] == "--minimized")
+            {
+                this.Hide();
+            }
+
             rulesList.ItemsSource = rulesCollection;
+        }
+
+        private void wifiTimer_Tick(object sender, EventArgs e)
+        {
+            currentWiFi = WiFi.connectedWiFi();
+
+            if (currentWiFi != lastKnownWiFi && currentWiFi.Trim() != "")
+            {
+                applyRule(currentWiFi);
+                lastKnownWiFi = currentWiFi;
+            }
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -80,6 +112,42 @@ namespace WifiPowerPlanSelector
                 WiFiRule newRule = new WiFiRule(true, newRuleWindow.SelectedWiFi, newRuleWindow.SelectedPowerPlan);
                 rulesCollection.Add(newRule);
             }
+        }
+
+        private bool? applyRule(String ssid)
+        {
+            foreach (WiFiRule rule in rulesCollection) {
+                if (rule.WiFi.SSID == ssid)
+                {
+                    ExecuteCommand("Powercfg /S " + rule.PowerPlan.GUID);
+                }
+            }
+            return true;
+        }
+
+        public static string ExecuteCommand(string command)
+        {
+            ProcessStartInfo procStartInfo = new ProcessStartInfo("cmd", "/c " + command)
+            {
+                RedirectStandardError = true,
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            using (Process proc = new Process())
+            {
+                proc.StartInfo = procStartInfo;
+                proc.Start();
+
+                string output = proc.StandardOutput.ReadToEnd();
+
+                if (string.IsNullOrEmpty(output))
+                    output = proc.StandardError.ReadToEnd();
+
+                return output;
+            }
+
         }
     }
 }

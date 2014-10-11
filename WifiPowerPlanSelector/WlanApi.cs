@@ -220,19 +220,26 @@ namespace NativeWifi
 			{
 				get
 				{
-					int valueSize;
-					IntPtr valuePtr;
-					Wlan.WlanOpcodeValueType opcodeValueType;
-					Wlan.ThrowIfError(
-						Wlan.WlanQueryInterface(client.clientHandle, info.interfaceGuid, Wlan.WlanIntfOpcode.CurrentConnection, IntPtr.Zero, out valueSize, out valuePtr, out opcodeValueType));
-					try
-					{
-							return (Wlan.WlanConnectionAttributes)Marshal.PtrToStructure(valuePtr, typeof(Wlan.WlanConnectionAttributes));
-					}
-					finally
-					{
-						Wlan.WlanFreeMemory(valuePtr);
-					}
+                    try
+                    {
+                        int valueSize;
+                        IntPtr valuePtr;
+                        Wlan.WlanOpcodeValueType opcodeValueType;
+                        Wlan.ThrowIfError(
+                            Wlan.WlanQueryInterface(client.clientHandle, info.interfaceGuid, Wlan.WlanIntfOpcode.CurrentConnection, IntPtr.Zero, out valueSize, out valuePtr, out opcodeValueType));
+                        try
+                        {
+                            return (Wlan.WlanConnectionAttributes)Marshal.PtrToStructure(valuePtr, typeof(Wlan.WlanConnectionAttributes));
+                        }
+                        finally
+                        {
+                            Wlan.WlanFreeMemory(valuePtr);
+                        }
+                    }
+                    catch (Win32Exception w32e)
+                    {
+                        return new Wlan.WlanConnectionAttributes();
+                    }
 				}
 			}
 

@@ -73,6 +73,11 @@ namespace WifiPowerPlanSelector
             }
         }
 
+        public WiFiRule()
+        {
+
+        }
+
         public WiFiRule(Boolean enabled, WiFi wifi, PowerPlan powerPlan)
         {
             this.deleted = false;

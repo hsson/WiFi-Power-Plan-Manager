@@ -7,12 +7,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WifiPowerPlanSelector")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("WiFi Power Plan Manager")]
+[assembly: AssemblyDescription("A tool for setting the windows power plan based on connected WiFi.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WifiPowerPlanSelector")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCompany("Alexander Håkansson")]
+[assembly: AssemblyProduct("WiFi Power Plan Manager")]
+[assembly: AssemblyCopyright("Copyright © 2014 Alexander Håkansson")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

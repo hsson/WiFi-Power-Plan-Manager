@@ -54,8 +54,7 @@ namespace WifiPowerPlanSelector
             WiFi.refreshAllWiFi();
             wifis = WiFi.getAllWiFis();
             powerPlans = new List<PowerPlan>();
-            powerPlans.Add(new PowerPlan("Dummy Rule"));
-            powerPlans.Add(new PowerPlan("Dumber Dummy Rule"));
+            powerPlans = PowerPlan.GetAllPowerPlans();
 
             wifiComboBox.ItemsSource = wifis;
             powerPlanComboBox.ItemsSource = powerPlans;
@@ -81,7 +80,7 @@ namespace WifiPowerPlanSelector
             }
             else
             {
-                MessageBox.Show("Nothing selected!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Everything is not filled in.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
         }
