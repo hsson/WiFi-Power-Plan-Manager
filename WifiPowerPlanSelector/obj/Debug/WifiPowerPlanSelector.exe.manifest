@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WifiPowerPlanSelector.exe" size="65024">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WifiPowerPlanSelector.exe" size="65536">
       <assemblyIdentity name="WifiPowerPlanSelector" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>okcMnOtrjz0UHV2qbODzlTVNvY94LuGvpKtHOikXMew=</dsig:DigestValue>
+        <dsig:DigestValue>RwZRF+x/+HDeDx1kOdhDsyDLn9ao7uQZ7mjA2N1fvR4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -11,6 +11,7 @@ namespace WifiPowerPlanSelector
     {
         private string ssid = "";
         private static List<WiFi> wifis = new List<WiFi>();
+        private static WlanClient client = new WlanClient();
 
         public string SSID
         {
@@ -44,15 +45,13 @@ namespace WifiPowerPlanSelector
 
         public static String connectedWiFi()
         {
-            WlanClient client = new WlanClient();
-
             try
             {
                 foreach (WlanClient.WlanInterface wlanIface in client.Interfaces)
                 {
                     Wlan.WlanConnectionAttributes currentConnection = wlanIface.CurrentConnection;
-                    return currentConnection.profileName;
-                }
+                    return currentConnection.profileName;                    
+                }                
             }
             finally
             {

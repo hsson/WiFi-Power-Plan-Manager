@@ -28,6 +28,8 @@ namespace WifiPowerPlanSelector
         {
             InitializeComponent();
 
+            this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
             lastKnownWiFi = WiFi.connectedWiFi();
             currentWiFi = lastKnownWiFi;
 
@@ -73,7 +75,7 @@ namespace WifiPowerPlanSelector
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO: Make sure to save state.
-            Close();
+            this.Visibility = Visibility.Collapsed;
         }
 
         private void EditRuleMenu_Click(object sender, RoutedEventArgs e)

@@ -31,6 +31,12 @@ namespace WifiPowerPlanSelector
         #region ISingleInstanceApp Members
         public bool SignalExternalCommandLineArgs(IList<string> args)
         {
+            if (Current.MainWindow.Visibility == Visibility.Collapsed)
+            {
+                Current.MainWindow.Visibility = Visibility.Visible;
+                CenterWindowOnScreen();
+            }
+
             if (Current.MainWindow.WindowState == WindowState.Minimized)
             {
                 Current.MainWindow.WindowState = WindowState.Normal;
@@ -41,5 +47,15 @@ namespace WifiPowerPlanSelector
             return true;
         }
         #endregion
+
+        private void CenterWindowOnScreen()
+        {
+            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            double windowWidth = Current.MainWindow.Width;
+            double windowHeight = Current.MainWindow.Height;
+            Current.MainWindow.Left = (screenWidth / 2) - (windowWidth / 2);
+            Current.MainWindow.Top = (screenHeight / 2) - (windowHeight / 2);
+        }
     }
 }
