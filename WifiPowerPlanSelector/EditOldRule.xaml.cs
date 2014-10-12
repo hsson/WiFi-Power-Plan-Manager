@@ -11,46 +11,44 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using NativeWifi;
-using WifiPowerPlanSelector;
 
 namespace WifiPowerPlanSelector
 {
-    public partial class AddNewRule : Window
+    public partial class EditOldRule : Window
     {
-        private List<WiFi> wifis;
         private List<PowerPlan> powerPlans;
 
-        private WiFi chosenWiFi;
-        private PowerPlan selctedPowerplan;
+        private WiFi wifi;
+        private PowerPlan selectedPowerPlan;
 
-        public WiFi SelectedWiFi
+        public WiFi WiFi
         {
             get
             {
-                return chosenWiFi;
-            }
+                return this.wifi;
+            }            
         }
 
         public PowerPlan SelectedPowerPlan
         {
             get
             {
-                return selctedPowerplan;
+                return this.selectedPowerPlan;
             }
         }
 
-        public AddNewRule()
+        public EditOldRule(WiFi wifi)
         {
             InitializeComponent();
-            WiFi.refreshAllWiFi();
-            wifis = WiFi.getAllWiFis();
+            this.wifi = wifi;
+            ruleNameText.Text = wifi.SSID;
+
             powerPlans = new List<PowerPlan>();
             powerPlans = PowerPlan.GetAllPowerPlans();
 
-            wifiComboBox.ItemsSource = wifis;
             powerPlanComboBox.ItemsSource = powerPlans;
         }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -62,19 +60,18 @@ namespace WifiPowerPlanSelector
             DialogResult = false;
         }
 
-        private void SaveRuleButton_Click(object sender, RoutedEventArgs e)
+        private void SaveEditButton_Click(object sender, RoutedEventArgs e)
         {
-            if (wifiComboBox.SelectedIndex > -1 || powerPlanComboBox.SelectedIndex > -1)
+            if (powerPlanComboBox.SelectedIndex > -1)
             {
-                chosenWiFi = (WiFi)wifiComboBox.SelectedItem;
-                selctedPowerplan = (PowerPlan)powerPlanComboBox.SelectedItem;
+                selectedPowerPlan = (PowerPlan)powerPlanComboBox.SelectedItem;
                 DialogResult = true;
             }
             else
             {
-                MessageBox.Show("Everything is not filled in.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("No power plan selected!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+
         }
 
         public bool? ShowDialog(Window owner)

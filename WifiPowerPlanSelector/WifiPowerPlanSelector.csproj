@@ -90,6 +90,9 @@
     <Compile Include="AddNewRule.xaml.cs">
       <DependentUpon>AddNewRule.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditOldRule.xaml.cs">
+      <DependentUpon>EditOldRule.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interop.cs" />
     <Compile Include="PowerPlan.cs" />
     <Compile Include="SingleInstance.cs" />
@@ -97,6 +100,10 @@
     <Compile Include="WiFiRule.cs" />
     <Compile Include="WlanApi.cs" />
     <Page Include="AddNewRule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditOldRule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

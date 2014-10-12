@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.ComponentModel;
 
 namespace WifiPowerPlanSelector
 {
@@ -90,9 +91,23 @@ namespace WifiPowerPlanSelector
         private void EditRuleMenu_Click(object sender, RoutedEventArgs e)
         {
             WiFiRule item = this.rulesList.SelectedItem as WiFiRule;
-            
-            //Dummy action
-            MessageBox.Show("TODO: Edit: " + item.WiFi.SSID);
+
+            EditOldRule editRuleWindow = new EditOldRule(item.WiFi);
+
+            if (editRuleWindow.ShowDialog(Application.Current.MainWindow) == true)
+            {
+                foreach (WiFiRule rule in rulesCollection)
+                {
+                    if (rule.WiFi == item.WiFi)
+                    {
+                        rule.PowerPlan = editRuleWindow.SelectedPowerPlan;
+                        rulesCollection[rulesCollection.IndexOf(rule)] = rule;
+                        ICollectionView view = CollectionViewSource.GetDefaultView(rulesCollection);
+                        view.Refresh();
+                        break;
+                    }
+                }
+            }
         }
 
         private void DeleteRuleMenu_Click(object sender, RoutedEventArgs e)
@@ -117,11 +132,23 @@ namespace WifiPowerPlanSelector
         private void AddNewRuleButton_Click(object sender, RoutedEventArgs e)
         {
             AddNewRule newRuleWindow = new AddNewRule();
+            bool unique = true;
 
             if (newRuleWindow.ShowDialog(Application.Current.MainWindow) == true)
             {
-                WiFiRule newRule = new WiFiRule(true, newRuleWindow.SelectedWiFi, newRuleWindow.SelectedPowerPlan);
-                rulesCollection.Add(newRule);
+                foreach (WiFiRule rule in rulesCollection)
+                {
+                    if (rule.WiFi.SSID == newRuleWindow.SelectedWiFi.SSID)
+                    {
+                        MessageBox.Show("A rule for the WiFi: '" + newRuleWindow.SelectedWiFi.SSID + "' already exists.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        unique = false;
+                    }
+                }
+                if (unique)
+                {
+                    WiFiRule newRule = new WiFiRule(true, newRuleWindow.SelectedWiFi, newRuleWindow.SelectedPowerPlan);
+                    rulesCollection.Add(newRule);
+                }
             }
         }
 

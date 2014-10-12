@@ -18,3 +18,5 @@ C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanS
 C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanSelector\WifiPowerPlanSelector\obj\Debug\WifiPowerPlanSelector.exe.manifest
 C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanSelector\WifiPowerPlanSelector\obj\Debug\WifiPowerPlanSelector.application
 C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanSelector\WifiPowerPlanSelector\obj\Debug\App.baml
+C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanSelector\WifiPowerPlanSelector\obj\Debug\EditOldRule.baml
+C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanSelector\WifiPowerPlanSelector\obj\Debug\EditOldRule.g.cs
