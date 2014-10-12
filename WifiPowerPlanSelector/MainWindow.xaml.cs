@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 
 namespace WifiPowerPlanSelector
 {
@@ -27,6 +28,11 @@ namespace WifiPowerPlanSelector
         public MainWindow()
         {
             InitializeComponent();
+
+            if (LoadState() == false)
+            {
+                Close();
+            }
 
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
@@ -74,7 +80,10 @@ namespace WifiPowerPlanSelector
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Make sure to save state.
+            if(SaveState() == false) 
+            {
+                MessageBox.Show("The rules could not be saved. They will not stay after reboot.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
             this.Visibility = Visibility.Collapsed;
         }
 
@@ -149,7 +158,57 @@ namespace WifiPowerPlanSelector
 
                 return output;
             }
+        }
 
+        private bool? SaveState()
+        {
+            try
+            {
+                using (Stream stream = File.Open("rules.save", FileMode.Create))
+                {
+                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                    bformatter.Serialize(stream, rulesCollection);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBoxResult result = MessageBox.Show("Error: " + e.Message + "\n\nTry again?", "Error", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                if (result == MessageBoxResult.Yes)
+                {
+                    return SaveState();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool? LoadState()
+        {
+            try
+            {
+                using (Stream stream = File.Open("rules.save", FileMode.Open))
+                {
+                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                    rulesCollection = (ObservableCollection<WiFiRule>)bformatter.Deserialize(stream);
+                }
+            }
+            catch (FileNotFoundException) 
+            {
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error: The WiFi rules could not be loaded\n\nMessage: " + e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
         }
     }
 }

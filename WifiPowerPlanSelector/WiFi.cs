@@ -7,6 +7,7 @@ using NativeWifi;
 
 namespace WifiPowerPlanSelector
 {
+    [Serializable]
     public class WiFi
     {
         private string ssid = "";

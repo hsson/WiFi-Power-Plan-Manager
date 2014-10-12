@@ -7,6 +7,7 @@ using System.Windows;
 
 namespace WifiPowerPlanSelector
 {
+    [Serializable]
     class WiFiRule        
     {
         private WiFi wifi;

@@ -8,6 +8,7 @@ using System.Windows;
 
 namespace WifiPowerPlanSelector
 {
+    [Serializable]
     public class PowerPlan
     {
         private String name, guid;
