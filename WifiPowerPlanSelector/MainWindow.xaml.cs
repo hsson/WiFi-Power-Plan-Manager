@@ -16,51 +16,64 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.ComponentModel;
+using System.Windows.Threading;
 
 namespace WifiPowerPlanSelector
 {
     public partial class MainWindow : Window
     {
         private ObservableCollection<WiFiRule> rulesCollection = new ObservableCollection<WiFiRule>();
-        private String[] args;
         private String lastKnownWiFi, currentWiFi;
-        
 
+        // The interval in seconds that the timer will check if any rule can be applied
+        private static const int UPDATE_INTERVAL = 10;
+        
+        /*
+         * The contructor loads the previously saved rules and sets
+         * various parameters. It also starts the timer that will check
+         * wether a new WiFi is connected. 
+         */
         public MainWindow()
         {
             InitializeComponent();
 
+            lastKnownWiFi = WiFi.connectedWiFi();
+            currentWiFi = lastKnownWiFi;
+
+            this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            String[] args = Environment.GetCommandLineArgs();
+            
+            // If there are rules but they can't be loaded, close the program
             if (LoadState() == false)
             {
                 Close();
             }
 
-            this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-
-            lastKnownWiFi = WiFi.connectedWiFi();
-            currentWiFi = lastKnownWiFi;
-
-            System.Windows.Threading.DispatcherTimer wifiTimer = new System.Windows.Threading.DispatcherTimer();
-            wifiTimer.Tick += new EventHandler(wifiTimer_Tick);
-            wifiTimer.Interval = new TimeSpan(0, 0, 10);
-            wifiTimer.Start();
-
-            args = Environment.GetCommandLineArgs();
-
-            // If --minimized is used the program will not show. Use this when starting
-            // the program at windows boot.
+            // Bind the collection of rules with the graphical list view.
+            rulesList.ItemsSource = rulesCollection;
+            
+            // If --minimized is used as command line argument the program will not show. 
+            // This is preferably used when autostarting the program at boot.
             if (args.Length > 1 && args[1] == "--minimized")
             {
                 this.Hide();
-            }
+            }           
 
-            rulesList.ItemsSource = rulesCollection;
+            // Starts the timer that will make sure the rules are followed
+            DispatcherTimer wifiTimer = new DispatcherTimer();
+            wifiTimer.Tick += new EventHandler(wifiTimer_Tick);
+            wifiTimer.Interval = new TimeSpan(0, 0, UPDATE_INTERVAL);
+            wifiTimer.Start();
         }
 
+        /**
+         * This method is responsible for making sure the rules are being
+         * put into action. It currently only applies the rule if switching
+         * between two WiFi's.
+         */
         private void wifiTimer_Tick(object sender, EventArgs e)
         {
-            currentWiFi = WiFi.connectedWiFi();
-
+            currentWiFi = WiFi.connectedWiFi();           
             if (currentWiFi != lastKnownWiFi && currentWiFi.Trim() != "")
             {
                 applyRule(currentWiFi);
@@ -68,17 +81,30 @@ namespace WifiPowerPlanSelector
             }
         }
 
+        /* 
+         * This method enables the posibility to click and drag anywhere
+         * on the window to move it. This is essential for moving the window
+         * since the borders have been disabled.
+         */
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
 
+        /*
+         * Simply minimizes the window like the default minimize button would do.
+         */
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
         }
 
+        /*
+         * Closes the window and hides it from the system tray, but doesn't terminate
+         * the process. The program is still running in the background making sure 
+         * the rules are being followed. It also saves the rules in case of a reboot.
+         */
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             if(SaveState() == false) 
@@ -88,6 +114,11 @@ namespace WifiPowerPlanSelector
             this.Visibility = Visibility.Collapsed;
         }
 
+        /*
+         * This method is run when the user right clicks a rule and selects "Edit".
+         * The method uses the EditOldRule class to open up a new window for editing. 
+         * Editing a rule in this sense is to change powerplan for the selected rule's wifi.
+         */
         private void EditRuleMenu_Click(object sender, RoutedEventArgs e)
         {
             WiFiRule item = this.rulesList.SelectedItem as WiFiRule;

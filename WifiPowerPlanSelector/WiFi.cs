@@ -14,6 +14,7 @@ namespace WifiPowerPlanSelector
         private static List<WiFi> wifis = new List<WiFi>();
         private static WlanClient client = new WlanClient();
 
+        #region properties
         public string SSID
         {
             get
@@ -26,6 +27,7 @@ namespace WifiPowerPlanSelector
         {
             this.ssid = ssid;
         }
+        #endregion
 
         public static void refreshAllWiFi()
         {
