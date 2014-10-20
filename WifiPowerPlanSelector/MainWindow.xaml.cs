@@ -29,6 +29,10 @@ namespace WifiPowerPlanSelector
         private const int UPDATE_INTERVAL = 10;
 
         public static TextBlock logText;
+
+        private String currentDirectory = Environment.CurrentDirectory;
+        private String fullExecutablePath = Environment.CurrentDirectory + "\\" + System.AppDomain.CurrentDomain.FriendlyName;
+        private const String programName = "WiFi Power Plan Manager";
         
         /*
          * The contructor loads the previously saved rules and sets
@@ -38,6 +42,9 @@ namespace WifiPowerPlanSelector
         public MainWindow()
         {
             InitializeComponent();
+
+            Properties.Settings.Default.pathToProgram = fullExecutablePath;
+            Properties.Settings.Default.Save();
 
             logText = (TextBlock)this.FindName("logTextBlock");
 
@@ -276,6 +283,23 @@ namespace WifiPowerPlanSelector
             }
             logText.Text = "Successfully loaded rules";
             return true;
+        }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsDialog settingsDialog = new SettingsDialog();
+
+            if (settingsDialog.ShowDialog(Application.Current.MainWindow) == true)
+            {
+                if (settingsDialog.StartWithWindows)
+                {
+                    Microsoft.Win32.Registry.SetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run", programName, fullExecutablePath);
+                }
+                else
+                {
+                    Microsoft.Win32.Registry.SetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run", programName, "empty");
+                }
+            }
         }
     }
 }

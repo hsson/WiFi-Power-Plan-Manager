@@ -52,7 +52,7 @@
         </Button>
         <Label Content="by Alexander Håkansson" HorizontalAlignment="Left" Margin="141,47,0,0" VerticalAlignment="Top"/>
         <Button x:Name="MinimizeButton" Content="0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="35" Background="{x:Null}" BorderBrush="{x:Null}" Height="30" FontSize="16" ToolTip="Minimize" FontFamily="Webdings" Foreground="Gray" Margin="0,0,35,0" Click="MinimizeButton_Click" BorderThickness="0"/>
-        <Button x:Name="SettingsButton" Content="Settings" HorizontalAlignment="Left" Margin="439,318,0,0" VerticalAlignment="Top" Width="74" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        <Button x:Name="SettingsButton" Content="Settings" HorizontalAlignment="Left" Margin="439,318,0,0" VerticalAlignment="Top" Width="74" Background="{x:Null}" BorderBrush="{x:Null}" Click="SettingsButton_Click"/>
         <TextBlock x:Name="logTextBlock" HorizontalAlignment="Left" Margin="10,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="424"/>
     </Grid>
 </Window>

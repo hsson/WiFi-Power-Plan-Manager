@@ -42,24 +42,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WifiPowerPlanSelector.exe" size="71680">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WifiPowerPlanSelector.exe" size="76288">
       <assemblyIdentity name="WifiPowerPlanSelector" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Rneizbd3ksig8zAKyQvmEfiSm1W6DCK6sCR8QnLqtDY=</dsig:DigestValue>
+        <dsig:DigestValue>y31MFuZmTjt8xGopwRNQ7V7YTveydhu8RgnEmkiE51I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="WifiPowerPlanSelector.exe.config" size="187">
+  <file name="WifiPowerPlanSelector.exe.config" size="1075">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>xm4bo26HQ0LNVwz1vdPYtzhkpMnp2AI5i+f0b+OahTI=</dsig:DigestValue>
+      <dsig:DigestValue>nLL9tUdALMGsNc1oUd72Ho6ftAURwiAGiVi5iZSVxiQ=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
