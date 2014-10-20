@@ -26,7 +26,9 @@ namespace WifiPowerPlanSelector
         private String lastKnownWiFi, currentWiFi;
 
         // The interval in seconds that the timer will check if any rule can be applied
-        private static const int UPDATE_INTERVAL = 10;
+        private const int UPDATE_INTERVAL = 10;
+
+        public static TextBlock logText;
         
         /*
          * The contructor loads the previously saved rules and sets
@@ -36,6 +38,8 @@ namespace WifiPowerPlanSelector
         public MainWindow()
         {
             InitializeComponent();
+
+            logText = (TextBlock)this.FindName("logTextBlock");
 
             lastKnownWiFi = WiFi.connectedWiFi();
             currentWiFi = lastKnownWiFi;
@@ -135,6 +139,7 @@ namespace WifiPowerPlanSelector
                         rulesCollection[rulesCollection.IndexOf(rule)] = rule;
                         ICollectionView view = CollectionViewSource.GetDefaultView(rulesCollection);
                         view.Refresh();
+                        logText.Text = "Successfully edited rule for: " + rule.WiFi.SSID;
                         break;
                     }
                 }
@@ -151,8 +156,10 @@ namespace WifiPowerPlanSelector
             switch (rsltMessageBox)
             {
                 case MessageBoxResult.Yes:
-                    rulesCollection.Remove((WiFiRule)rulesList.SelectedItem);
+                    WiFiRule tmpRule = (WiFiRule)rulesList.SelectedItem;
+                    rulesCollection.Remove(tmpRule);
                     item.Dispose();
+                    logText.Text = "Removed rule: " + tmpRule.WiFi.SSID;
                     break;
 
                 case MessageBoxResult.No:
@@ -172,6 +179,7 @@ namespace WifiPowerPlanSelector
                     if (rule.WiFi.SSID == newRuleWindow.SelectedWiFi.SSID)
                     {
                         MessageBox.Show("A rule for the WiFi: '" + newRuleWindow.SelectedWiFi.SSID + "' already exists.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        logText.Text = "Could not add duplicate rule";
                         unique = false;
                     }
                 }
@@ -189,6 +197,7 @@ namespace WifiPowerPlanSelector
                 if (rule.WiFi.SSID == ssid)
                 {
                     ExecuteCommand("Powercfg /S " + rule.PowerPlan.GUID);
+                    logText.Text = "Rule applied: " + rule.WiFi.SSID;
                 }
             }
             return true;
@@ -265,7 +274,7 @@ namespace WifiPowerPlanSelector
                 MessageBox.Show("Error: The WiFi rules could not be loaded\n\nMessage: " + e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
+            logText.Text = "Successfully loaded rules";
             return true;
         }
     }
