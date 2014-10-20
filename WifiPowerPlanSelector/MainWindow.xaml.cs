@@ -43,6 +43,8 @@ namespace WifiPowerPlanSelector
         {
             InitializeComponent();
 
+            lastKnownWiFi = Properties.Settings.Default.lastKnowWiFi;
+
             Properties.Settings.Default.pathToProgram = fullExecutablePath;
             Properties.Settings.Default.Save();
 
@@ -68,7 +70,9 @@ namespace WifiPowerPlanSelector
             if (args.Length > 1 && args[1] == "--minimized")
             {
                 this.Hide();
-            }           
+            }
+
+            applyRule(WiFi.connectedWiFi());
 
             // Starts the timer that will make sure the rules are followed
             DispatcherTimer wifiTimer = new DispatcherTimer();
@@ -89,6 +93,8 @@ namespace WifiPowerPlanSelector
             {
                 applyRule(currentWiFi);
                 lastKnownWiFi = currentWiFi;
+                Properties.Settings.Default.lastKnowWiFi = lastKnownWiFi;
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -294,6 +300,8 @@ namespace WifiPowerPlanSelector
                 if (settingsDialog.StartWithWindows)
                 {
                     Microsoft.Win32.Registry.SetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run", programName, fullExecutablePath);
+                    Properties.Settings.Default.pathToProgram = fullExecutablePath;
+                    Properties.Settings.Default.Save();
                 }
                 else
                 {

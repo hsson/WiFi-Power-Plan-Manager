@@ -46,5 +46,17 @@ namespace WifiPowerPlanSelector.Properties {
                 this["pathToProgram"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string lastKnowWiFi {
+            get {
+                return ((string)(this["lastKnowWiFi"]));
+            }
+            set {
+                this["lastKnowWiFi"] = value;
+            }
+        }
     }
 }
