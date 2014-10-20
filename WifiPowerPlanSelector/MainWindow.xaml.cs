@@ -299,7 +299,7 @@ namespace WifiPowerPlanSelector
             {
                 if (settingsDialog.StartWithWindows)
                 {
-                    Microsoft.Win32.Registry.SetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run", programName, fullExecutablePath);
+                    Microsoft.Win32.Registry.SetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run", programName, fullExecutablePath + " --minimized");
                     Properties.Settings.Default.pathToProgram = fullExecutablePath;
                     Properties.Settings.Default.Save();
                 }
