@@ -70,6 +70,7 @@ namespace WifiPowerPlanSelector
             if (args.Length > 1 && args[1] == "--minimized")
             {
                 this.Hide();
+                App.minimized = true;
             }
 
             applyRule(WiFi.connectedWiFi());

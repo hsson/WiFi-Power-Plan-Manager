@@ -10,12 +10,11 @@ using Microsoft.Shell;
 
 namespace WifiPowerPlanSelector
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application, ISingleInstanceApp
     {
-        private const string Unique = "My_Unique_Application_String";
+        public static Boolean minimized = false;
+
+        private const string Unique = "WiFiPowerPlanManager";
         [STAThread]
         public static void Main()
         {
@@ -31,6 +30,12 @@ namespace WifiPowerPlanSelector
         #region ISingleInstanceApp Members
         public bool SignalExternalCommandLineArgs(IList<string> args)
         {
+            if (minimized)
+            {
+                Current.MainWindow.Show();
+                minimized = false;
+            }
+
             if (Current.MainWindow.Visibility == Visibility.Collapsed)
             {
                 Current.MainWindow.Visibility = Visibility.Visible;
@@ -40,7 +45,8 @@ namespace WifiPowerPlanSelector
             if (Current.MainWindow.WindowState == WindowState.Minimized)
             {
                 Current.MainWindow.WindowState = WindowState.Normal;
-            }
+            }            
+
             Current.MainWindow.Activate();
             Current.MainWindow.BringIntoView();
 
