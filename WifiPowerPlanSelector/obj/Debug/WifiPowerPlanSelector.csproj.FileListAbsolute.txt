@@ -21,3 +21,4 @@ C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanS
 C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanSelector\WifiPowerPlanSelector\obj\Debug\EditOldRule.g.cs
 C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanSelector\WifiPowerPlanSelector\obj\Debug\SettingsDialog.baml
 C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanSelector\WifiPowerPlanSelector\obj\Debug\SettingsDialog.g.cs
+C:\Users\Alexander\Google Drive\Development\Visual Studio 2013\C#\WifiPowerPlanSelector\WifiPowerPlanSelector\obj\Debug\WifiPowerPlanSelector.csprojResolveAssemblyReference.cache

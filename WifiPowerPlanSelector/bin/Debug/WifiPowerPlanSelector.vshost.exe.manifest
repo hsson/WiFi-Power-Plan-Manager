@@ -49,17 +49,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>XiFmFJHCfmkM6G3ecLWn/BU7RV7iL0knrsjPOznXDbs=</dsig:DigestValue>
+        <dsig:DigestValue>WXhuqv5RNG3/MbKAHvUS4mgGFACEWhL5sjAKQWxVK8s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="WifiPowerPlanSelector.exe.config" size="1190">
+  <file name="WifiPowerPlanSelector.exe.config" size="1309">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>So+EDjwekTm+wl7wHWlR0jCkKigXosGQv7nefDK/0vU=</dsig:DigestValue>
+      <dsig:DigestValue>V463boBlMWB5+GgGtJzMnnlS5pT/j6CTzIMWXtzbxsY=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

@@ -30,8 +30,8 @@ namespace WifiPowerPlanSelector
 
         public static TextBlock logText;
 
-        private String currentDirectory = Environment.CurrentDirectory;
-        private String fullExecutablePath = Environment.CurrentDirectory + "\\" + System.AppDomain.CurrentDomain.FriendlyName;
+        private String currentDirectory;
+        private String fullExecutablePath;
         private const String programName = "WiFi Power Plan Manager";
         
         /*
@@ -43,9 +43,13 @@ namespace WifiPowerPlanSelector
         {
             InitializeComponent();
 
-            lastKnownWiFi = Properties.Settings.Default.lastKnowWiFi;
+            Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
+            currentDirectory = Environment.CurrentDirectory;
+            fullExecutablePath = Environment.CurrentDirectory + "\\" + System.AppDomain.CurrentDomain.FriendlyName;
+                       
             Properties.Settings.Default.pathToProgram = fullExecutablePath;
+            Properties.Settings.Default.programDirectory = currentDirectory;
             Properties.Settings.Default.Save();
 
             logText = (TextBlock)this.FindName("logTextBlock");
@@ -245,7 +249,7 @@ namespace WifiPowerPlanSelector
         {
             try
             {
-                using (Stream stream = File.Open("rules.save", FileMode.Create))
+                using (Stream stream = File.Open(Properties.Settings.Default.programDirectory + @"\rules.save", FileMode.Create))
                 {
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
@@ -272,7 +276,7 @@ namespace WifiPowerPlanSelector
         {
             try
             {
-                using (Stream stream = File.Open("rules.save", FileMode.Open))
+                using (Stream stream = File.Open(Properties.Settings.Default.programDirectory + @"\rules.save", FileMode.Open))
                 {
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
