@@ -2,9 +2,9 @@ WiFi Power Plan Manager
 ======================
 *OS: Windows*
 
-*Author: Alexander Håkansson*
+*Author: Alexander HÃ¥kansson*
 
-*Contributors: NaN (so far)*
+*Contributors: None (so far)*
 
 Tool for setting Windows power plans based on currently connected WiFi.
 
